@@ -1,0 +1,62 @@
+<!-- Property Binding 👇 -->
+<button
+  class="btn btn-primary"
+  [id]="serverId"
+  [disabled]="!allowedRunServer"
+  (click)="onCreateServer()"
+>
+  RUN SERVER
+</button>
+
+<!-- Structural Directives 👇 -->
+
+<!-- Example of Structural Directives 👇 -->
+<!-- <p *ngIf="isServerCreated">Server Created Successfully</p>
+<p *ngIf="!isServerCreated">No Server Created</p> -->
+
+<!-- Structural Directives -->
+<!-- Example of Structural Directives with condition till angualr 16 👇 -->
+<p *ngIf="isServerCreated; else noServer">Server Created Successfully</p>
+<ng-template #noServer>
+  <p>No Server Created</p>
+</ng-template>
+
+<!-- Example of Structural Directives with condition from angualr 17 👇 -->
+@if (isServerCreated) {
+  <p>Server Created Successfully</p>
+} @else {
+  <p>No Server Created</p>
+}
+
+<!-- Example of Structural Directives with loop till angualr 16 👇 -->
+<p *ngFor="let server of serversName">{{ server.name }}</p>
+
+<!-- Example of Structural Directives with loop from angualr 17 👇 -->
+@for (server of serversName; track server.id) {
+  <p>{{ server.name }}</p>
+}
+
+<p>{{ severCreationStatus }}</p>
+<!------------------------------------------------------------->
+<!-- Attribute Directives 👇 -->
+
+<!-- Style Binding 👇 -->
+<h2 [ngStyle]="serverStyles">Welcome{{ username }} using attribute directive</h2>
+
+<!-- Class Binding 👇 -->
+<h2 [ngClass]="serverClasses">This New Server</h2>
+
+<!-- Data Binding Interpolation 👇 -->
+<p>server with id {{ serverId }} with status {{ serverStatus }}</p>
+
+<p>server with id {{ serverId }} with status {{ getServerStatus() }}</p>
+
+<!-- Data Binding Two Way Binding 👇 -->
+<input [(ngModel)]="username" />
+<p>Hello {{ username }}</p>
+
+<!-- Data Binding Two Way Binding with array 👇 -->
+<input type="text" [(ngModel)]="serversName" />
+<p>{{ serversName }}</p>
+
+<button (click)="sayHello()">Say Hello!</button>
