@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
+import { COURSES } from './data/db-data';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,18 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('demo');
+  courses = COURSES;
 
-  serverElements: any = [{ type: 'server', name: 'test', content: 'this a test server' }]; // Intialzie with one element
+  @Input() coreCourses = COURSES[0];
+  @Input() rxjsCourse = COURSES[1];
+  @Input() ngrxCourse = COURSES[2];
+
+  onCourseSelected(course: any) {
+    console.log('card clicked');
+    console.log(course);
+  }
+
+  // serverElements: any = [{ type: 'server', name: 'test', content: 'this a test server' }]; // Intialzie with one element
 
   // TODO: Moved to Core Module
   // newServerName: string = '';
@@ -30,18 +41,18 @@ export class App {
   //   });
   // }
 
-  onServerAdded(severData: { serverName: string; serverContent: string }) {
-    this.serverElements.push({
-      type: 'server',
-      name: severData.serverName,
-      content: severData.serverContent,
-    });
-  }
-  onBlueprintAdded(severData: { serverName: string; serverContent: string }) {
-    this.serverElements.push({
-      type: 'blueprint',
-      name: severData.serverName,
-      content: severData.serverContent,
-    });
-  }
+  // onServerAdded(severData: { serverName: string; serverContent: string }) {
+  //   this.serverElements.push({
+  //     type: 'server',
+  //     name: severData.serverName,
+  //     content: severData.serverContent,
+  //   });
+  // }
+  // onBlueprintAdded(severData: { serverName: string; serverContent: string }) {
+  //   this.serverElements.push({
+  //     type: 'blueprint',
+  //     name: severData.serverName,
+  //     content: severData.serverContent,
+  //   });
+  // }
 }

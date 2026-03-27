@@ -38,7 +38,7 @@
   </div> -->
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <app-core
     (serverCreated)="onServerAdded($event)"
     (blueprintCreated)="onBlueprintAdded($event)"
@@ -55,4 +55,27 @@
       </app-server-element>
     </div>
   </div>
-</div>
+</div> -->
+
+<br />
+<br />
+
+<!-- <app-course-card
+  (courseSelected)="onCourseSelected($event)"
+  [course]="coreCourses"
+></app-course-card>
+<app-course-card
+  (courseSelected)="onCourseSelected($event)"
+  [course]="rxjsCourse"
+></app-course-card>
+<app-course-card
+  (courseSelected)="onCourseSelected($event)"
+  [course]="ngrxCourse"
+></app-course-card> -->
+
+@for (course of courses; track course.id; let index = $index) {
+  <p>{{ index }}</p>
+  <app-course-card (courseSelected)="onCourseSelected($event)" [course]="course"></app-course-card>
+} @empty {
+  <p>No courses found</p>
+}
