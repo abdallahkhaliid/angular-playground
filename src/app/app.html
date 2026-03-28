@@ -100,10 +100,32 @@
   <p>No courses found</p>
 } -->
 
-<div #containerFor>
+<!-- <div #containerFor>
   <app-course-card
     *ngFor="let course of courses; trackBy: onTrackCourse; let index = index"
     (courseSelected)="onCourseSelected($event)"
     [course]="course"
   ></app-course-card>
+</div> -->
+
+<!--  -->
+<div *ngIf="courses[1] as course">
+  <ng-template #noImage let-courseName="description">
+    {{ courseName }}
+  </ng-template>
+
+  <ng-container
+    *ngTemplateOutlet="noImage; context: { description: course.description }"
+  ></ng-container>
+
+  <app-course-card
+    (courseSelected)="onCourseSelected($event)"
+    [course]="course"
+    [blankImage]="noImage"
+  >
+    <app-course-image [imageUrl]="course.iconUrl"></app-course-image>
+    <!-- <app-course-image [imageUrl]="courses[2].iconUrl"></app-course-image>
+    <app-course-image [imageUrl]="courses[3].iconUrl"></app-course-image> -->
+    <p>This is a paragraph</p>
+  </app-course-card>
 </div>
