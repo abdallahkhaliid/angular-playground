@@ -14,9 +14,11 @@ import { Core } from './core/core';
 import { ServerElement } from './server-element/server-element';
 import { CourseCard } from './course-card/course-card';
 import { CourseImage } from './course-image/course-image';
+import { BasicHighkight } from './directives/basic-highkight';
+import { Highlighted } from './directives/highlighted';
 
 @NgModule({
-  declarations: [App, Header, Core, Server, ServerElement, CourseCard, CourseImage],
+  declarations: [App, Header, Core, Server, ServerElement, CourseCard, CourseImage, BasicHighkight, Highlighted],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
   bootstrap: [App], // the root component that will be rendered in the browser

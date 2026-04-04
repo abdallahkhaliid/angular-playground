@@ -114,18 +114,27 @@
     {{ courseName }}
   </ng-template>
 
-  <ng-container
+  <!-- <ng-container
     *ngTemplateOutlet="noImage; context: { description: course.description }"
-  ></ng-container>
+  ></ng-container> -->
 
-  <app-course-card
+  <!-- <app-course-card
+   
+    #highlightedDirective="high"
     (courseSelected)="onCourseSelected($event)"
     [course]="course"
     [blankImage]="noImage"
-  >
+    appHighlighted
+    (toggleHighlight)="onToggleHighlight($event)"
+
+    
+  > -->
+
+  <app-course-card [course]="course" class="salmon">
     <app-course-image [imageUrl]="course.iconUrl"></app-course-image>
     <!-- <app-course-image [imageUrl]="courses[2].iconUrl"></app-course-image>
     <app-course-image [imageUrl]="courses[3].iconUrl"></app-course-image> -->
-    <p>This is a paragraph</p>
   </app-course-card>
 </div>
+
+<div class="course-card">test</div>

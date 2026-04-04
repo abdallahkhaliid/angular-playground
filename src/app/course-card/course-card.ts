@@ -11,6 +11,7 @@ import {
   QueryList,
   TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ICourse } from '../interfaces/course';
 import { CourseImage } from '../course-image/course-image';
@@ -20,6 +21,7 @@ import { CourseImage } from '../course-image/course-image';
   standalone: false,
   templateUrl: './course-card.html',
   styleUrl: './course-card.scss',
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class CourseCard implements AfterViewInit, AfterContentInit {
   // Optional Input Property

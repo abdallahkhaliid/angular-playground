@@ -21,6 +21,15 @@
     <h4 class="card-title" [style.text-transform]="'uppercase'">{{ course.description }}</h4>
     <p class="card-text">{{ course.longDescription }}</p>
 
+    <!-- Custom Directive -->
+    <h3 appBasicHighkight [highlightedColor]="'yellow'" [defaultColor]="'blue'">
+      This Highlighted Text
+    </h3>
+
+    <form>
+      <input type="text" re />
+    </form>
+
     <div class="d-flex flex-column justify-content-between">
       @switch (course.category) {
         @case ('BEGINNER') {

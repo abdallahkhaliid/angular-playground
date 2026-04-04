@@ -7,3 +7,34 @@
 .advanced {
   background-color: red;
 }
+
+.course-card {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+  }
+  &.highlighted {
+    background-color: yellow;
+    border-color: yellow;
+  }
+  &.highlighted:hover {
+    background-color: yellow;
+    border-color: yellow;
+  }
+
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+}
+
+// :host {
+//   background-color: red !important;
+// }
+
+:host-context(.salmon) {
+  background-color: rgb(46, 223, 40) !important;
+  color: white !important;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1) !important;
+}

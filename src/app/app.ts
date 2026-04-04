@@ -61,6 +61,10 @@ export class App implements AfterViewInit {
     return course.id;
   }
 
+  onToggleHighlight(isHighlighted: boolean) {
+    console.log('isHighlighted', isHighlighted);
+  }
+
   // serverElements: any = [{ type: 'server', name: 'test', content: 'this a test server' }]; // Intialzie with one element
 
   // TODO: Moved to Core Module
