@@ -38,7 +38,7 @@
   </div> -->
 </div>
 
-<!-- <div class="container">
+<div class="container">
   <app-core
     (serverCreated)="onServerAdded($event)"
     (blueprintCreated)="onBlueprintAdded($event)"
@@ -55,7 +55,7 @@
       </app-server-element>
     </div>
   </div>
-</div> -->
+</div>
 
 <br />
 <br />
@@ -109,16 +109,16 @@
 </div> -->
 
 <!--  -->
-<div *ngIf="courses[1] as course">
+<!-- <div *ngIf="courses[1] as course">
   <ng-template #noImage let-courseName="description">
     {{ courseName }}
-  </ng-template>
+  </ng-template> -->
 
-  <!-- <ng-container
+<!-- <ng-container
     *ngTemplateOutlet="noImage; context: { description: course.description }"
   ></ng-container> -->
 
-  <!-- <app-course-card
+<!-- <app-course-card
    
     #highlightedDirective="high"
     (courseSelected)="onCourseSelected($event)"
@@ -130,11 +130,10 @@
     
   > -->
 
-  <app-course-card [course]="course" class="salmon">
+<!-- <app-course-card [course]="course" class="salmon">
     <app-course-image [imageUrl]="course.iconUrl"></app-course-image>
-    <!-- <app-course-image [imageUrl]="courses[2].iconUrl"></app-course-image>
-    <app-course-image [imageUrl]="courses[3].iconUrl"></app-course-image> -->
-  </app-course-card>
-</div>
-
-<div class="course-card">test</div>
+   
+  </app-course-card> -->
+<!-- </div> -->
+<!-- 
+<div class="course-card">test</div> -->

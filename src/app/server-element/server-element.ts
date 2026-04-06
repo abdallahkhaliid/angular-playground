@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -12,4 +12,17 @@ export class ServerElement {
     name: '',
     content: '',
   };
+
+  constructor() {
+    console.log('constructor', this.element);
+  }
+
+  // called After the constructor and after the @Input properties are initialized
+  ngOnInit(): void {
+    console.log('ngOnInit', this.element);
+  }
+
+  ngOnChanges(changes: SimpleChange): void {
+    console.log('ngOnChanges', changes);
+  }
 }

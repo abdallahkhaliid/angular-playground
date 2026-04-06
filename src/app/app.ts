@@ -65,7 +65,7 @@ export class App implements AfterViewInit {
     console.log('isHighlighted', isHighlighted);
   }
 
-  // serverElements: any = [{ type: 'server', name: 'test', content: 'this a test server' }]; // Intialzie with one element
+  serverElements: any = [{ type: 'server', name: 'test', content: 'this a test server' }]; // Intialzie with one element
 
   // TODO: Moved to Core Module
   // newServerName: string = '';
@@ -86,18 +86,18 @@ export class App implements AfterViewInit {
   //   });
   // }
 
-  // onServerAdded(severData: { serverName: string; serverContent: string }) {
-  //   this.serverElements.push({
-  //     type: 'server',
-  //     name: severData.serverName,
-  //     content: severData.serverContent,
-  //   });
-  // }
-  // onBlueprintAdded(severData: { serverName: string; serverContent: string }) {
-  //   this.serverElements.push({
-  //     type: 'blueprint',
-  //     name: severData.serverName,
-  //     content: severData.serverContent,
-  //   });
-  // }
+  onServerAdded(serverData: { serverName: string; serverContent: string }) {
+    this.serverElements.push({
+      type: 'server',
+      name: serverData.serverName,
+      content: serverData.serverContent,
+    });
+  }
+  onBlueprintAdded(serverData: { serverName: string; serverContent: string }) {
+    this.serverElements.push({
+      type: 'blueprint',
+      name: serverData.serverName,
+      content: serverData.serverContent,
+    });
+  }
 }
