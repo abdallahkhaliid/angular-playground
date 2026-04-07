@@ -3,10 +3,11 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
+import { AppComponent } from './app';
 import { Header } from './header/header';
 import { Server } from './server/server';
 import { FormsModule } from '@angular/forms';
@@ -16,11 +17,13 @@ import { CourseCard } from './course-card/course-card';
 import { CourseImage } from './course-image/course-image';
 import { BasicHighkight } from './directives/basic-highkight';
 import { Highlighted } from './directives/highlighted';
+import { AccountComponent } from './account/account';
+import { NewAccountComponent } from './new-account/new-account';
 
 @NgModule({
-  declarations: [App, Header, Core, Server, ServerElement, CourseCard, CourseImage, BasicHighkight, Highlighted],
+  declarations: [AppComponent, Header, Core, Server, ServerElement, CourseCard, CourseImage, BasicHighkight, Highlighted, AccountComponent, NewAccountComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
-  bootstrap: [App], // the root component that will be rendered in the browser
+  providers: [provideHttpClient(), provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
+  bootstrap: [AppComponent], // the root component that will be rendered in the browser
 })
 export class AppModule {}

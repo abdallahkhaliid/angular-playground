@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   Input,
+  OnInit,
   QueryList,
   signal,
   ViewChild,
@@ -11,6 +12,7 @@ import {
 } from '@angular/core';
 import { COURSES } from './data/db-data';
 import { CourseCard } from './course-card/course-card';
+import { AccountService } from './services/account';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +20,10 @@ import { CourseCard } from './course-card/course-card';
   standalone: false,
   styleUrl: './app.scss',
 })
-export class App implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   protected readonly title = signal('demo');
+
+  accounts: { name: string; status: string }[] = [];
 
   // Component reference variable
   @ViewChild(CourseCard) card: CourseCard;
@@ -40,8 +44,12 @@ export class App implements AfterViewInit {
   @Input() rxjsCourse = COURSES[1];
   @Input() ngrxCourse = COURSES[2];
 
-  constructor() {
+  //
+  constructor(private accountService: AccountService) {
     console.log('constructor', this.card);
+  }
+  ngOnInit(): void {
+    this.accounts = this.accountService.accounts;
   }
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit', this.card);

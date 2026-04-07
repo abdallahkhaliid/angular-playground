@@ -1,0 +1,37 @@
+<div class="account-card" [ngClass]="account.status">
+  <div class="account-info">
+    <div class="name-section">
+      <span class="label">Account Name</span>
+      <h4 class="name">{{ account.name }}</h4>
+    </div>
+    <div class="status-section">
+      <span class="status-badge" [ngClass]="account.status">
+        {{ account.status | titlecase }}
+      </span>
+    </div>
+  </div>
+
+  <div class="account-actions">
+    <div class="action-buttons">
+      <button 
+        class="btn-action active-btn" 
+        [disabled]="account.status === 'active'"
+        (click)="onSetToStatus('active')">
+        Activate
+      </button>
+      <button 
+        class="btn-action inactive-btn" 
+        [disabled]="account.status === 'inactive'"
+        (click)="onSetToStatus('inactive')">
+        Deactivate
+      </button>
+      <button 
+        class="btn-action unknown-btn" 
+        [disabled]="account.status === 'hidden'"
+        (click)="onSetToStatus('hidden')">
+        Hide
+      </button>
+    </div>
+  </div>
+</div>
+

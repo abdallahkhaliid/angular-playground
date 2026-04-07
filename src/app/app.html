@@ -36,8 +36,8 @@
       }
     </div>
   </div> -->
-</div>
 
+  <!-- 
 <div class="container">
   <app-core
     (serverCreated)="onServerAdded($event)"
@@ -55,12 +55,12 @@
       </app-server-element>
     </div>
   </div>
-</div>
+</div> -->
 
-<br />
-<br />
+  <br />
+  <br />
 
-<!-- <app-course-card
+  <!-- <app-course-card
   (courseSelected)="onCourseSelected($event)"
   [course]="coreCourses"
 ></app-course-card>
@@ -73,34 +73,34 @@
   [course]="ngrxCourse"
 ></app-course-card> -->
 
-<!-- @for (course of courses; track course.id; let index = $index) {
+  <!-- @for (course of courses; track course.id; let index = $index) {
   <p>{{ index }}</p>
   <app-course-card (courseSelected)="onCourseSelected($event)" [course]="course"></app-course-card>
 } @empty {
   <p>No courses found</p>
 } -->
 
-<!-- <div #containerRef>
+  <!-- <div #containerRef>
   <app-course-card
     (courseSelected)="onCourseSelected($event)"
     [course]="courses[0]"
   ></app-course-card> -->
-<!-- Card With template reference variable -->
-<!-- <app-course-card
+  <!-- Card With template reference variable -->
+  <!-- <app-course-card
     #cardTwoRef
     (courseSelected)="onCourseSelected($event)"
     [course]="courses[1]"
   ></app-course-card>
 </div> -->
 
-<!-- @for (course of courses; track course.id; let index = $index) {
+  <!-- @for (course of courses; track course.id; let index = $index) {
   <p>{{ index }}</p>
   <app-course-card (courseSelected)="onCourseSelected($event)" [course]="course"></app-course-card>
 } @empty {
   <p>No courses found</p>
 } -->
 
-<!-- <div #containerFor>
+  <!-- <div #containerFor>
   <app-course-card
     *ngFor="let course of courses; trackBy: onTrackCourse; let index = index"
     (courseSelected)="onCourseSelected($event)"
@@ -108,17 +108,17 @@
   ></app-course-card>
 </div> -->
 
-<!--  -->
-<!-- <div *ngIf="courses[1] as course">
+  <!--  -->
+  <!-- <div *ngIf="courses[1] as course">
   <ng-template #noImage let-courseName="description">
     {{ courseName }}
   </ng-template> -->
 
-<!-- <ng-container
+  <!-- <ng-container
     *ngTemplateOutlet="noImage; context: { description: course.description }"
   ></ng-container> -->
 
-<!-- <app-course-card
+  <!-- <app-course-card
    
     #highlightedDirective="high"
     (courseSelected)="onCourseSelected($event)"
@@ -130,10 +130,32 @@
     
   > -->
 
-<!-- <app-course-card [course]="course" class="salmon">
+  <!-- <app-course-card [course]="course" class="salmon">
     <app-course-image [imageUrl]="course.iconUrl"></app-course-image>
    
   </app-course-card> -->
-<!-- </div> -->
-<!-- 
+  <!-- </div> -->
+  <!-- 
 <div class="course-card">test</div> -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <app-new-account></app-new-account>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <app-account
+          *ngFor="let account of accounts; let i = index"
+          [account]="account"
+          [id]="i"
+
+
+        >
+        </app-account>
+      </div>
+    </div>
+  </div>
+</div>
