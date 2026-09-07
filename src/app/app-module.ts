@@ -21,9 +21,25 @@ import { AccountComponent } from './account/account';
 import { NewAccountComponent } from './new-account/new-account';
 
 @NgModule({
-  declarations: [AppComponent, Header, Core, Server, ServerElement, CourseCard, CourseImage, BasicHighkight, Highlighted, AccountComponent, NewAccountComponent],
+  declarations: [
+    AppComponent,
+    Header,
+    Core,
+    Server,
+    ServerElement,
+    CourseCard,
+    CourseImage,
+    BasicHighkight,
+    Highlighted,
+    AccountComponent,
+    NewAccountComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [provideHttpClient(), provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
+  providers: [
+    provideHttpClient(),
+    provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
+  ],
   bootstrap: [AppComponent], // the root component that will be rendered in the browser
 })
 export class AppModule {}
