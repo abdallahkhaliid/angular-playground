@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="form-card">
+    <header class="form-header">
+      <h2>Create account</h2>
+      <p>Template-driven form example</p>
+    </header>
+
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+      <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup" class="form-group">
+        <label for="username">Name</label>
+        <input
+          type="text"
+          required
+          name="username"
+          ngModel
+          #username="ngModel"
+          class="form-control"
+          id="username"
+          placeholder="e.g. Superuser"
+        />
+
+        <small class="text-danger" *ngIf="username.invalid && username.touched">
+          Username is required
+        </small>
+      </div>
+
+      <button type="button" (click)="suggestUserName()" class="btn btn-suggest">
+        Suggest a Name
+      </button>
+
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          name="email"
+          required
+          email
+          #email="ngModel"
+          ngModel
+          class="form-control"
+          id="email"
+          placeholder="you@example.com"
+        />
+
+        <div class="error-list" *ngIf="email.touched && email.errors">
+          <small class="text-danger" *ngIf="email.errors['required']">Email can't be empty</small>
+          <small class="text-danger" *ngIf="email.errors['email']"
+            >Please enter a valid email</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="secret">Secret question</label>
+        <select
+          [ngModel]="defaultQuestion"
+          class="form-control"
+          name="secret"
+          id="secret"
+          required
+          #secret="ngModel"
+        >
+          <option value="">Select a question</option>
+          <option value="What is your favorite color?">What is your favorite color?</option>
+          <option value="What is your mother's maiden name?">
+            What is your mother's maiden name?
+          </option>
+          <option value="What was the name of your first pet?">
+            What was the name of your first pet?
+          </option>
+        </select>
+        <small class="text-danger" *ngIf="secret.invalid && secret.touched">
+          Please select a secret question
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="answer">Answer</label>
+        <textarea
+          required
+          name="answer"
+          [(ngModel)]="answer"
+          #answerCtrl="ngModel"
+          class="form-control"
+          id="answer"
+          rows="3"
+          placeholder="Type your answer here..."
+        ></textarea>
+        <small class="text-danger" *ngIf="answerCtrl.invalid && answerCtrl.touched">
+          Answer is required
+        </small>
+        <p class="reply-preview">
+          Your reply: <strong>{{ answer || '—' }}</strong>
+        </p>
+      </div>
+
+      <button [disabled]="!userForm.valid" type="submit" class="btn btn-primary">
+        Submit
+      </button>
+
+      <section class="result" *ngIf="user">
+        <h3>Submitted data</h3>
+        <dl>
+          <div>
+            <dt>Username</dt>
+            <dd>{{ user.userName }}</dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd>{{ user.email }}</dd>
+          </div>
+          <div>
+            <dt>Secret question</dt>
+            <dd>{{ user.secretQuestion || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Answer</dt>
+            <dd>{{ user.answer }}</dd>
+          </div>
+        </dl>
+      </section>
+    </form>
+  </div>
+</div>

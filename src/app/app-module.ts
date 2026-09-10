@@ -19,6 +19,7 @@ import { BasicHighkight } from './directives/basic-highkight';
 import { Highlighted } from './directives/highlighted';
 import { AccountComponent } from './account/account';
 import { NewAccountComponent } from './new-account/new-account';
+import { Tdf } from './tdf/tdf';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NewAccountComponent } from './new-account/new-account';
     Highlighted,
     AccountComponent,
     NewAccountComponent,
+    Tdf,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [
