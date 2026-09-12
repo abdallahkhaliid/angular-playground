@@ -1,0 +1,189 @@
+<div class="container">
+  <div class="form-card">
+    <header class="form-header">
+      <h2>Create your account</h2>
+      <p>Reactive form with built-in, custom &amp; cross-field validation</p>
+    </header>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="e.g. JohnDoe"
+          formControlName="username"
+          autocomplete="username"
+          [class.is-invalid]="getControl('username')?.invalid && getControl('username')?.touched"
+          [class.is-valid]="getControl('username')?.valid && getControl('username')?.touched"
+        />
+        <div
+          class="error-list"
+          *ngIf="getControl('username')?.invalid && getControl('username')?.touched"
+        >
+          <small class="text-danger" *ngIf="getControl('username')?.errors?.['required']">
+            Username is required.
+          </small>
+          <small class="text-danger" *ngIf="getControl('username')?.errors?.['minlength']">
+            Must be at least 3 characters long.
+          </small>
+          <small class="text-danger" *ngIf="getControl('username')?.errors?.['forbiddenName']">
+            "{{ username?.errors?.['forbiddenName']?.value }}" is reserved — try another name.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="you@example.com"
+          formControlName="email"
+          autocomplete="email"
+          [class.is-invalid]="getControl('email')?.invalid && getControl('email')?.touched"
+          [class.is-valid]="getControl('email')?.valid && getControl('email')?.touched"
+        />
+        <div class="error-list" *ngIf="getControl('email')?.invalid && getControl('email')?.touched">
+          <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">
+            Email is required.
+          </small>
+          <small class="text-danger" *ngIf="getControl('email')?.errors?.['email']">
+            Please enter a valid email address.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Min. 6 characters"
+            formControlName="password"
+            autocomplete="new-password"
+            [class.is-invalid]="
+              getControl('password')?.invalid && getControl('password')?.touched
+            "
+            [class.is-valid]="getControl('password')?.valid && getControl('password')?.touched"
+          />
+          <div
+            class="error-list"
+            *ngIf="getControl('password')?.invalid && getControl('password')?.touched"
+          >
+            <small class="text-danger" *ngIf="getControl('password')?.errors?.['required']">
+              Password is required.
+            </small>
+            <small class="text-danger" *ngIf="getControl('password')?.errors?.['minlength']">
+              Must be at least 6 characters long.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            placeholder="Repeat password"
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+            [class.is-invalid]="passwordsMismatch"
+            [class.is-valid]="
+              !registrationForm.hasError('passwordMismatch') &&
+              (getControl('confirmPassword')?.dirty || getControl('confirmPassword')?.touched) &&
+              getControl('confirmPassword')?.value
+            "
+          />
+        </div>
+      </div>
+      <div class="error-list password-match-error" *ngIf="passwordsMismatch">
+        <small class="text-danger">Passwords do not match.</small>
+      </div>
+
+      <fieldset formGroupName="address" class="address-group">
+        <legend>Address <span>(optional)</span></legend>
+        <p class="address-hint">Filling in street makes city + postal code required.</p>
+
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input
+            type="text"
+            class="form-control"
+            id="street"
+            placeholder="123 Main St"
+            formControlName="street"
+            autocomplete="street-address"
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              placeholder="Anytown"
+              formControlName="city"
+              autocomplete="address-level2"
+              [class.is-invalid]="
+                getAddressControl('city')?.invalid &&
+                (getAddressControl('city')?.dirty || getAddressControl('city')?.touched)
+              "
+            />
+            <div
+              class="error-list"
+              *ngIf="
+                getAddressControl('city')?.errors?.['required'] &&
+                (getAddressControl('city')?.dirty || getAddressControl('city')?.touched)
+              "
+            >
+              <small class="text-danger">City is required when street is filled.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="postal">Postal code</label>
+            <input
+              type="text"
+              class="form-control"
+              id="postal"
+              placeholder="12345"
+              formControlName="postal"
+              autocomplete="postal-code"
+              inputmode="numeric"
+              [class.is-invalid]="
+                getAddressControl('postal')?.invalid &&
+                (getAddressControl('postal')?.dirty || getAddressControl('postal')?.touched)
+              "
+            />
+            <div
+              class="error-list"
+              *ngIf="
+                getAddressControl('postal')?.errors?.['required'] &&
+                (getAddressControl('postal')?.dirty || getAddressControl('postal')?.touched)
+              "
+            >
+              <small class="text-danger">Postal code is required when street is filled.</small>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="button" (click)="onLoadData()" class="btn btn-secondary">
+          Load demo data
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">
+          Create account
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

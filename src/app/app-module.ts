@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
 import { Header } from './header/header';
 import { Server } from './server/server';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Core } from './core/core';
 import { ServerElement } from './server-element/server-element';
 import { CourseCard } from './course-card/course-card';
@@ -20,6 +20,7 @@ import { Highlighted } from './directives/highlighted';
 import { AccountComponent } from './account/account';
 import { NewAccountComponent } from './new-account/new-account';
 import { Tdf } from './tdf/tdf';
+import { ReactiveForms } from './reactive-forms/reactive-forms';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,9 @@ import { Tdf } from './tdf/tdf';
     AccountComponent,
     NewAccountComponent,
     Tdf,
+    ReactiveForms,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
     provideHttpClient(),
     provideBrowserGlobalErrorListeners(),

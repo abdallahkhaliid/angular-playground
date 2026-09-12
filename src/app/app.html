@@ -37,7 +37,7 @@
     </div>
   </div> -->
 
-  <!-- 
+  <!--
 <div class="container">
   <app-core
     (serverCreated)="onServerAdded($event)"
@@ -119,7 +119,7 @@
   ></ng-container> -->
 
   <!-- <app-course-card
-   
+
     #highlightedDirective="high"
     (courseSelected)="onCourseSelected($event)"
     [course]="course"
@@ -127,15 +127,15 @@
     appHighlighted
     (toggleHighlight)="onToggleHighlight($event)"
 
-    
+
   > -->
 
   <!-- <app-course-card [course]="course" class="salmon">
     <app-course-image [imageUrl]="course.iconUrl"></app-course-image>
-   
+
   </app-course-card> -->
   <!-- </div> -->
-  <!-- 
+  <!--
 <div class="course-card">test</div> -->
 
   <div class="container">
@@ -147,13 +147,7 @@
     <hr />
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <app-account
-          *ngFor="let account of accounts; let i = index"
-          [account]="account"
-          [id]="i"
-
-
-        >
+        <app-account *ngFor="let account of accounts; let i = index" [account]="account" [id]="i">
         </app-account>
       </div>
     </div>
@@ -161,6 +155,11 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <app-tdf></app-tdf>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <app-reactive-forms></app-reactive-forms>
       </div>
     </div>
   </div>
