@@ -1,0 +1,107 @@
+<div class="container pipes-demo">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h2>Pipes &amp; Status Demo</h2>
+
+      <!-- async pipe: resolves after ~2s -->
+      <p class="app-status">
+        App status: <strong>{{ appStatus | async }}</strong>
+      </p>
+
+      <div class="controls">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Filter by status (stable, offline, critical)"
+          [(ngModel)]="filteredStatus"
+        />
+        <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      </div>
+      <p class="hint">
+        Try <code>stable</code>, <code>offline</code> or <code>critical</code>. Adding a server
+        proves the <code>filter</code> pipe updates (impure pipe).
+      </p>
+
+      <hr />
+
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | filter: filteredStatus : 'status'"
+          [ngClass]="getStatusClasses(server)"
+        >
+          <strong>{{ server.name | shorten: 15 }}</strong>
+          <span class="separator">|</span>
+          {{ server.instanceType | uppercase }}
+          <span class="separator">|</span>
+          {{ server.started | date: 'fullDate' | uppercase }}
+          <br />
+          <small class="server-numbers">
+            Cost: {{ server.cost | currency: 'USD' : 'symbol' : '1.2-2' }} &bull; Load:
+            {{ server.load | number: '1.1-1' }} &bull; Uptime:
+            {{ server.uptime | percent: '1.1-1' }}
+          </small>
+          <span class="badge" [ngClass]="getStatusClasses(server)">
+            {{ server.status }}
+          </span>
+        </li>
+      </ul>
+
+      <p class="empty" *ngIf="(servers | filter: filteredStatus : 'status').length === 0">
+        No servers match "{{ filteredStatus }}".
+      </p>
+
+      <hr />
+
+      <h3>Built-in pipes</h3>
+      <div class="pipe-grid">
+        <div class="pipe-card">
+          <h4>Case: uppercase / lowercase / titlecase</h4>
+          <p>
+            Original: <code>{{ demoText }}</code>
+          </p>
+          <ul>
+            <li>uppercase: {{ demoText | uppercase }}</li>
+            <li>lowercase: {{ demoText | lowercase }}</li>
+            <li>titlecase: {{ demoText | titlecase }}</li>
+          </ul>
+        </div>
+
+        <div class="pipe-card">
+          <h4>Number</h4>
+          <p>
+            Original: <code>{{ bigNumber }}</code>
+          </p>
+          <ul>
+            <li>default: {{ bigNumber | number }}</li>
+            <li>1.1-1: {{ bigNumber | number: '1.1-1' }}</li>
+            <li>1.2-2: {{ bigNumber | number: '1.2-2' }}</li>
+          </ul>
+        </div>
+
+        <div class="pipe-card">
+          <h4>Currency</h4>
+          <p>
+            Original: <code>{{ price }}</code>
+          </p>
+          <ul>
+            <li>USD: {{ price | currency: 'USD' }}</li>
+            <li>USD symbol 1.2-2: {{ price | currency: 'USD' : 'symbol' : '1.2-2' }}</li>
+            <li>EUR code: {{ price | currency: 'EUR' : 'code' }}</li>
+          </ul>
+        </div>
+
+        <div class="pipe-card">
+          <h4>Percent</h4>
+          <p>
+            Original: <code>{{ discount }}</code>
+          </p>
+          <ul>
+            <li>default: {{ discount | percent }}</li>
+            <li>1.1-1: {{ discount | percent: '1.1-1' }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

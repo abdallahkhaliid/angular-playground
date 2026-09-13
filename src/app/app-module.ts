@@ -21,6 +21,9 @@ import { AccountComponent } from './account/account';
 import { NewAccountComponent } from './new-account/new-account';
 import { Tdf } from './tdf/tdf';
 import { ReactiveForms } from './reactive-forms/reactive-forms';
+import { Pipes } from './pipes/pipes';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { ReactiveForms } from './reactive-forms/reactive-forms';
     NewAccountComponent,
     Tdf,
     ReactiveForms,
+    Pipes,
+    ShortenPipe,
+    FilterPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
