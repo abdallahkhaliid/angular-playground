@@ -1,0 +1,62 @@
+<div class="posts-page">
+  <div *ngIf="error()" class="alert-error" role="alert">
+    <div>
+      <strong>An error occurred!</strong>
+      <p>{{ error() }}</p>
+    </div>
+    <button type="button" class="btn-ghost danger" (click)="onHandleError()">Dismiss</button>
+  </div>
+
+  <header class="posts-header">
+    <div>
+      <h2>Posts</h2>
+      <p class="subtitle">Create a post, fetch the latest, or clear the list.</p>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="btn-ghost" (click)="onFetchPosts()">Fetch Posts</button>
+      <button type="button" class="btn-ghost danger" (click)="onClearPosts()">Clear Posts</button>
+    </div>
+  </header>
+
+  <section class="card form-card">
+    <h3>Create a new post</h3>
+    <form (ngSubmit)="onCreatePost(postForm.value)" #postForm="ngForm">
+      <div class="field">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          ngModel
+          required
+          placeholder="e.g. Learning Angular HTTP"
+        />
+      </div>
+      <div class="field">
+        <label for="content">Content</label>
+        <textarea
+          id="content"
+          name="content"
+          ngModel
+          required
+          rows="4"
+          placeholder="Write something interesting..."
+        ></textarea>
+      </div>
+      <button type="submit" class="btn-primary" [disabled]="!postForm.valid">Create Post</button>
+    </form>
+  </section>
+
+  <section class="card posts-list">
+    <h3>Posts</h3>
+    <div *ngIf="isFetching()" class="loading-indicator">Loading...</div>
+    <ul *ngIf="!isFetching() && loadedPosts().length > 0" class="post-items">
+      <li *ngFor="let post of loadedPosts()" class="post-card">
+        <span class="post-id">#{{ post.id }}</span>
+        <h4>{{ post.title }}</h4>
+        <p>{{ post.content }}</p>
+      </li>
+    </ul>
+    <p *ngIf="!isFetching() && loadedPosts().length === 0" class="empty">No posts available.</p>
+  </section>
+</div>

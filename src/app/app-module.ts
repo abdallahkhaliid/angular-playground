@@ -3,7 +3,7 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
@@ -24,6 +24,8 @@ import { ReactiveForms } from './reactive-forms/reactive-forms';
 import { Pipes } from './pipes/pipes';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { Posts } from './posts/posts';
+import { AuthInterceptorService } from './interceptors/auth.interceptor.service';
 
 @NgModule({
   declarations: [
@@ -43,12 +45,14 @@ import { FilterPipe } from './pipes/filter.pipe';
     Pipes,
     ShortenPipe,
     FilterPipe,
+    Posts,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [
     provideHttpClient(),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent], // the root component that will be rendered in the browser
 })
